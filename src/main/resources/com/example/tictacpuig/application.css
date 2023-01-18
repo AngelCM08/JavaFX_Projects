@@ -1,0 +1,13 @@
+.button{
+    -fx-background-color: #282828;
+    -fx-text-fill: #b5b0b0;
+}
+#canva{
+    -fx-background-color: #4d4d4d;
+}
+#result{
+    -fx-text-fill: #b5b0b0;
+}
+.text{
+    -fx-text-fill: #b5b0b0;
+}

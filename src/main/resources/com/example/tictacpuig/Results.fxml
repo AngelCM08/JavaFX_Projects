@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tictacpuig.controllers.ResultsController">
+   <children>
+      <Label fx:id="title" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="71.0" prefWidth="401.0" text="Congratulations for the two players!" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Line endX="291.0" layoutX="109.0" layoutY="71.0" startX="-109.0" />
+      <Label layoutX="23.0" layoutY="92.0" prefHeight="17.0" prefWidth="198.0" text="Please enter the player X name:" />
+      <TextField fx:id="Xname" layoutX="221.0" layoutY="88.0" />
+      <Label layoutX="23.0" layoutY="123.0" prefHeight="17.0" prefWidth="198.0" text="Please enter the player O name:" />
+      <TextField fx:id="Oname" layoutX="221.0" layoutY="119.0" />
+      <Button fx:id="aceptar" layoutX="260.0" layoutY="165.0" mnemonicParsing="false" onAction="#AcceptButtonAction" text="Aceptar" />
+      <Button fx:id="cancel" layoutX="328.0" layoutY="165.0" mnemonicParsing="false" onAction="#closeButtonAction" text="Cancelar" />
+   </children>
+</AnchorPane>
