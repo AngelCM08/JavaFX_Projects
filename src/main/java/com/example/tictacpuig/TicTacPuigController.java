@@ -3,6 +3,7 @@ package com.example.tictacpuig;
 import com.example.tictacpuig.Computer;
 import com.example.tictacpuig.Main;
 import com.example.tictacpuig.Player;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,6 +47,10 @@ public class TicTacPuigController implements Initializable {
     @FXML
     private Button button9 = new Button();
 
+    @FXML
+    private Button resetGame = new Button();
+
+
     ToggleGroup tg = new ToggleGroup();
     @FXML
     private RadioButton cvc;
@@ -80,6 +85,18 @@ public class TicTacPuigController implements Initializable {
     }
 
     @FXML
+    void restartGame(){
+        game_buttons.forEach(this::resetButton);
+        result.setText("");
+        resetGame.setVisible(false);
+    }
+
+    @FXML
+    void closeGame(){
+        Platform.exit();
+    }
+
+    @FXML
     void startGame(){
         gameType_buttons.forEach(button -> {
             if(button.isSelected()){
@@ -89,16 +106,16 @@ public class TicTacPuigController implements Initializable {
                         player2 = new Player(true, "O");
                         cvc();
                         break;
-                    /*case "pvc":
-                        player1 = new Player(false, "X");
-                        player2 = new Player(true, "O");
-                        pvc();
-                        break;*/
                     case "pvp":
                         player1 = new Player(false, "X");
                         player2 = new Player(false, "O");
                         pvp();
                         break;
+                    /*case "pvc":
+                        player1 = new Player(false, "X");
+                        player2 = new Player(true, "O");
+                        pvc();
+                        break;*/
                 }
             }
         });
@@ -106,6 +123,14 @@ public class TicTacPuigController implements Initializable {
 
     private void pvp() {
         enableButtons();
+    }
+
+    private void cvc() {
+        while(!checkIfGameIsOver()){
+            setPlayerSymbol(Computer.selectButton(game_buttons));
+        }
+        stopGame();
+        resetGame.setVisible(true);
     }
 
     /*private void pvc() {
@@ -122,19 +147,6 @@ public class TicTacPuigController implements Initializable {
         stopGame();
     }*/
 
-    private void cvc() {
-        while(!checkIfGameIsOver()){
-            setPlayerSymbol(Computer.selectButton(game_buttons));
-        }
-        stopGame();
-    }
-
-    @FXML
-    void restartGame(){
-        game_buttons.forEach(this::resetButton);
-        result.setText("");
-    }
-
     public void enableButtons(){
         game_buttons.forEach(button ->{
             button.setDisable(false);
@@ -142,7 +154,7 @@ public class TicTacPuigController implements Initializable {
     }
 
     public void resetButton(Button button){
-        button.setDisable(false);
+        button.setDisable(true);
         button.setText("");
     }
 
@@ -157,6 +169,7 @@ public class TicTacPuigController implements Initializable {
             if(checkIfGameIsOver()) {
                 stopGame();
                 FiPartida();
+                resetGame.setVisible(true);
             }
         });
     }
@@ -223,7 +236,7 @@ public class TicTacPuigController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("About.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 100);
             Stage stage = new Stage();
-            stage.setTitle("Results!");
+            stage.setTitle("About");
             stage.setScene(scene);
             stage.show();
         }catch (IOException e){

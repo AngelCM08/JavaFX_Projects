@@ -24,17 +24,17 @@
                <items>
                   <MenuItem fx:id="reset" mnemonicParsing="false" onAction="#restartGame" text="Reset" />
                   <MenuItem fx:id="theme" mnemonicParsing="false" onAction="#Theme" text="Theme" />
-                  <MenuItem fx:id="close" mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeGame" text="Close" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
                <items>
-                  <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#About" text="About" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Stats">
                <items>
-                  <MenuItem fx:id="stats" mnemonicParsing="false" text="Show" />
+                  <MenuItem fx:id="stats" disable="true" mnemonicParsing="false" text="Show" />
                </items>
             </Menu>
          </menus>
@@ -125,12 +125,12 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0">
                            <children>
-                              <RadioButton id="pvc" fx:id="pvc" mnemonicParsing="false">
+                              <RadioButton id="pvc" fx:id="pvc" disable="true" mnemonicParsing="false">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                               </RadioButton>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Human Vs Computer" wrappingWidth="215.13671875" HBox.hgrow="NEVER">
+                              <Text strikethrough="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Human Vs Computer" wrappingWidth="215.13671875" HBox.hgrow="NEVER">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -148,6 +148,11 @@
                      <font>
                         <Font size="26.0" />
                      </font></Label>
+                  <Button fx:id="resetGame" layoutX="58.0" layoutY="181.0" mnemonicParsing="false" onAction="#restartGame" prefHeight="39.0" prefWidth="237.0" text="Reset Game" visible="false">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
