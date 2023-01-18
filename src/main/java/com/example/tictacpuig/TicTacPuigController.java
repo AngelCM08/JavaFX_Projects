@@ -1,8 +1,5 @@
 package com.example.tictacpuig;
 
-import com.example.tictacpuig.Computer;
-import com.example.tictacpuig.Main;
-import com.example.tictacpuig.Player;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,15 +15,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class TicTacPuigController implements Initializable {
-    @FXML
-    private MenuItem close;
-    @FXML
-    private MenuItem theme;
     boolean darkTheme = false;
-    @FXML
-    private MenuItem about;
-    @FXML
-    private MenuItem stats;
 
     @FXML
     private Button button1 = new Button();
@@ -129,22 +118,19 @@ public class TicTacPuigController implements Initializable {
         while(!checkIfGameIsOver()){
             setPlayerSymbol(Computer.selectButton(game_buttons));
         }
-        stopGame();
         resetGame.setVisible(true);
+        stopGame();
     }
 
     /*private void pvc() {
         enableButtons();
         while(!checkIfGameIsOver()){
-            if(player1Turn){
-                button.setText(player1.symbol);
-                player1Turn = false;
+            if(changePlayerTurn()){
+                setPlayerSymbol();
             } else{
-                button.setText(player2.symbol);
-                player1Turn = true;
+                setPlayerSymbol(Computer.selectButton(game_buttons));
             }
         }
-        stopGame();
     }*/
 
     public void enableButtons(){
@@ -173,6 +159,12 @@ public class TicTacPuigController implements Initializable {
             }
         });
     }
+
+    /*public boolean changePlayerTurn(){
+        boolean turn = player1Turn;
+        player1Turn = !player1Turn;
+        return turn;
+    }*/
 
     public void setPlayerSymbol(Button button){
         if(player1Turn){
@@ -247,11 +239,9 @@ public class TicTacPuigController implements Initializable {
     public void Theme(){
         if(darkTheme){
             button1.getScene().getStylesheets().remove(getClass().getResource("application.css").toExternalForm());
-            System.out.println("quitar");
             darkTheme = false;
         }else{
             button1.getScene().getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-            System.out.println("poner");
             darkTheme = true;
         }
 
